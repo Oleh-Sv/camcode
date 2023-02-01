@@ -163,18 +163,12 @@ class CamcodeWeb {
 
   /// Fetch media device stream and affect it to the video element
   void _setupMediaStream(double width, double height) {
-    if (window.location.protocol.contains('https')) {
       var options = _configureOptions(width, height);
       window.navigator.mediaDevices
           ?.getUserMedia(options)
           .then((MediaStream stream) {
         _webcamVideoElement.srcObject = stream;
       });
-    } else {
-      window.navigator.getUserMedia(video: true).then((MediaStream stream) {
-        _webcamVideoElement.srcObject = stream;
-      });
-    }
   }
 
   /// configure constraint options to fetch media device stream
